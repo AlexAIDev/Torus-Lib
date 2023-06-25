@@ -1,3 +1,7 @@
+#ifndef MATRIX_H
+#define MATRIX_H
+
+#include <iostream>
 #include <vector>
 #include <string>
 
@@ -23,17 +27,7 @@ namespace tlib
             matrix& inverse();
             int get_size();
 
-        friend std::ostream &operator<<(std::ostream &out, matrix &other)
-        {
-            for (int i = 0; i < other.rows; i++)
-            {
-                out << "|";
-                for (int j = 0; j < other.cols; j++)
-                    out << " " << other.data[i][j];
-                out << " |\n";
-            }
-            return out;
-        }
+        friend std::ostream &operator<<(std::ostream &out, matrix &other);
         
         matrix& operator=(const matrix &other)
         {
@@ -86,6 +80,5 @@ namespace tlib
             return data[index];
         }
     };  
-
-    double determinant(matrix, int);
-} 
+}
+#endif
