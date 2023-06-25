@@ -35,4 +35,6 @@ namespace tlib
         }
         return det;
     }  
+
+    matrix& inverse(matrix); 
 } 

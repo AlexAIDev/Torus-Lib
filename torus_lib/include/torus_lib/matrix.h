@@ -15,18 +15,44 @@ namespace tlib
             std::vector<std::vector<double>> data;
 
         public:
+            /* Default constructor */
             matrix();
+
+            /* Constructor arguments: (rows, columns) */
             matrix(int, int);
+
+            /* Constructor of copying */
             matrix(const matrix &);
+
+            /* 
+             * Constructor arguments: ({...})
+             * For example:
+             * tlib::matrix m({{1, 0, 0}, {0, 1, 0}, {0, 0, 1}});
+             */
             matrix(std::initializer_list<std::initializer_list<double>>);
+
+            /* Destructor */
             ~matrix();
 
+            /* 
+             * Calculation of matrix trace 
+             * Trace - the sum of the elements of the main diagonal 
+             */
             double trace();
-            bool is_square();
-            matrix& transpose();
-            matrix& inverse();
-            int get_size();
 
+            /*  Check if matrix is square */
+            bool is_square();
+
+            /* Return transopose matrix */
+            matrix& transpose();
+            
+            /* Return number of rows */
+            int get_rows();
+
+            /* Return number of cols */
+            int get_cols();
+
+        // Operators overloading
         friend std::ostream &operator<<(std::ostream &out, matrix &other);
         
         matrix& operator=(const matrix &other)
@@ -75,8 +101,10 @@ namespace tlib
         std::vector<double>& operator[](int index)
         {
             if (index < 0 || index >= rows) 
-                throw std::out_of_range("Index out of range");
-
+            {
+                printf("<!> Out of range! \n");
+                throw 2;
+            }
             return data[index];
         }
     };  

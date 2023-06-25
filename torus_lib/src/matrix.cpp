@@ -4,6 +4,12 @@
 
 namespace tlib
 {
+    matrix::matrix()
+    {
+        rows = cols = 0;
+        data.push_back({});
+    }
+
     matrix::matrix(int rows, int cols)
     {
         this->rows = rows;
@@ -15,12 +21,6 @@ namespace tlib
             for (int j = 0; j < cols; j++)
                 data[i].push_back(1);
         }
-    }
-
-    matrix::matrix()
-    {
-        rows = cols = 0;
-        data.push_back({});
     }
 
     matrix::matrix(const matrix &other)
@@ -55,34 +55,31 @@ namespace tlib
     {
         for (int i = 0; i < other.rows; i++)
         {
-            out << "|";
+            out << "[";
             for (int j = 0; j < other.cols; j++)
                 out << " " << other.data[i][j];
-            out << " |\n";
+            out << " ]\n";
         }
         return out;
     }
 
     double matrix::trace()
     {
-        int tr = 0;
-        if(is_square())
+        if (!is_square())
         {
-            for (int i = 0; i < rows; i++)
-                tr += data[i][i];
+            printf("Matrix is not square! It has size (%d, %d)\n", rows, cols);
+            throw 3;
         }
+        
+        int tr = 0;
+        for (int i = 0; i < rows; i++)
+                tr += data[i][i];
         return tr;
     }
 
-    bool matrix::is_square()
-    {
-        return rows == cols;
-    }
+    bool matrix::is_square() { return rows == cols; }
 
-    int matrix::get_size()
-    {
-        if (is_square())
-            return rows;
-        return 0;
-    }
+    int matrix::get_rows() { return rows; }
+    
+    int matrix::get_cols() { return cols; }
 } 

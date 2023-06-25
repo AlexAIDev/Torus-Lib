@@ -5,7 +5,16 @@
 
 namespace tlib
 {
-    double determinant(matrix, int);  
+    /*
+     * Function to calculate matrix determinant
+     * Arguments: (square matrix, matrix size)
+    */
+    double determinant(matrix, int); 
+
+    /*
+     * Function to calculate inverse matrix 
+    */
+    matrix& inverse(matrix); 
 } 
 
 #endif
