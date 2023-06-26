@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include "../include/torus_lib/matrix.h"
+#include "matrix.h"
 
 namespace tlib
 {

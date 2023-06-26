@@ -1,3 +1,6 @@
+#ifndef VECTOR_H
+#define VECTOR_H
+
 namespace tlib
 {
     class vector
@@ -11,3 +14,5 @@ namespace tlib
             ~vector();
     };
 }
+
+#endif
