@@ -1,5 +1,5 @@
 #include <iostream>
-#include "vector.h"
+#include "../include/torus_lib/vector.h"
 
 namespace tlib
 {

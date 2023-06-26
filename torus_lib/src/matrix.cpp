@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
-#include "matrix.h"
+#include "../include/torus_lib/matrix.h"
+#include <vector>
 
 namespace tlib
 {
@@ -43,6 +44,13 @@ namespace tlib
                 data[i].push_back(e);
             ++i;
         }
+    }
+
+    matrix::matrix(std::vector<std::vector<double>> vec)
+    {
+        rows = vec.size();
+        cols = vec[0].size();
+        data = vec;
     }
     
     matrix::~matrix()

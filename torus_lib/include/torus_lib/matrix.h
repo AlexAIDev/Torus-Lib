@@ -24,6 +24,8 @@ namespace tlib
             /* Constructor of copying */
             matrix(const matrix &);
 
+            matrix(std::vector<std::vector<double>>);
+
             /* 
              * Constructor arguments: ({...})
              * For example:

@@ -2,6 +2,7 @@
 #define TLIB_H
 
 #include "matrix.h"
+#include "vector.h"
 
 namespace tlib
 {
@@ -15,6 +16,17 @@ namespace tlib
      * Function to calculate inverse matrix 
     */
     matrix& inverse(matrix); 
+
+    /*
+     * Matrix multiplication
+    */
+    matrix& dot(matrix, matrix);
+
+
+    /*
+     * Vector dot product
+    */
+    vector& dot(vector, vector);
 } 
 
 #endif

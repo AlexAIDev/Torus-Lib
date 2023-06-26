@@ -1,5 +1,6 @@
 #include "../include/torus_lib/tlib.h"
 #include <cmath>
+#include <vector>
 
 namespace tlib
 {
@@ -36,5 +37,31 @@ namespace tlib
         return det;
     }  
 
-    matrix& inverse(matrix); 
+    matrix& inverse(matrix mat); 
+
+    matrix& dot(matrix mat1, matrix mat2)
+    {
+        if (mat1.get_cols() != mat2.get_rows())
+        {
+            printf("<!> Size of matrixes are incompatible\n");
+            throw 3;
+        }
+
+        std::vector<std::vector<double>> vec(mat1.get_rows(), std::vector<double>(mat2.get_cols()));
+        
+        for (int i = 0; i < mat1.get_rows(); i++)
+        {
+            for (int j = 0; j < mat2.get_cols(); j++)
+            {
+                vec[i][j] = 0;
+                for (int k = 0; k < mat1.get_cols(); k++)
+                    vec[i][j] += mat1[i][k] * mat2[k][j];
+            }
+                
+        }
+        matrix* new_matrix = new matrix(vec);
+        return *new_matrix;
+    }
+
+    vector& dot(vector, vector);
 } 
