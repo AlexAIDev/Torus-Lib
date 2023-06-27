@@ -63,5 +63,5 @@ namespace tlib
         return *new_matrix;
     }
 
-    vector& dot(vector, vector);
+    vector& dot(vector vec1, vector vec2);
 } 

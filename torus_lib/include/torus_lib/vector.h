@@ -8,7 +8,6 @@ namespace tlib
         private:
             int* data;
             int size;
-            
         public:
             vector(/* args */);
             ~vector();
