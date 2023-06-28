@@ -1,17 +1,17 @@
 #include <iostream>
 #include <cmath>
-#include "../include/torus_lib/matrix.h"
+#include "../include/torus_lib/array.h"
 #include <vector>
 
 namespace tlib
 {
-    matrix::matrix()
+    array::array()
     {
         rows = cols = 0;
         data.push_back({});
     }
 
-    matrix::matrix(int rows, int cols)
+    array::array(int rows, int cols)
     {
         this->rows = rows;
         this->cols = cols;
@@ -24,14 +24,14 @@ namespace tlib
         }
     }
 
-    matrix::matrix(const matrix &other)
+    array::array(const array &other)
     {
         this->rows = other.rows;
         this->cols = other.cols;
         this->data = other.data;
     }
 
-    matrix::matrix(std::initializer_list<std::initializer_list<double>> init)
+    array::array(std::initializer_list<std::initializer_list<double>> init)
     {
         rows = init.size();
         cols = init.begin()->size();
@@ -46,20 +46,20 @@ namespace tlib
         }
     }
 
-    matrix::matrix(std::vector<std::vector<double>> vec)
+    array::array(std::vector<std::vector<double>> vec)
     {
         rows = vec.size();
         cols = vec[0].size();
         data = vec;
     }
     
-    matrix::~matrix()
+    array::~array()
     {
         for (int i = 0; i < rows; i++)
             data[i].clear();   
     }
 
-    std::ostream &operator<<(std::ostream &out, matrix &other)
+    std::ostream &operator<<(std::ostream &out, array &other)
     {
         for (int i = 0; i < other.rows; i++)
         {
@@ -71,11 +71,11 @@ namespace tlib
         return out;
     }
 
-    double matrix::trace()
+    double array::trace()
     {
         if (!is_square())
         {
-            printf("Matrix is not square! It has size (%d, %d)\n", rows, cols);
+            printf("array is not square! It has size (%d, %d)\n", rows, cols);
             throw 3;
         }
         
@@ -85,9 +85,9 @@ namespace tlib
         return tr;
     }
 
-    bool matrix::is_square() { return rows == cols; }
+    bool array::is_square() { return rows == cols; }
 
-    int matrix::get_rows() { return rows; }
+    int array::get_rows() { return rows; }
     
-    int matrix::get_cols() { return cols; }
+    int array::get_cols() { return cols; }
 } 
