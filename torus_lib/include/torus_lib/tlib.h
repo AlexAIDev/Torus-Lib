@@ -1,8 +1,7 @@
 #ifndef TLIB_H
 #define TLIB_H
 
-#include "matrix.h"
-#include "vector.h"
+#include "array.h"
 
 namespace tlib
 {
@@ -10,23 +9,19 @@ namespace tlib
      * Function to calculate matrix determinant
      * Arguments: (square matrix, matrix size)
     */
-    double determinant(matrix, int); 
+    double determinant(array, int); 
 
     /*
      * Function to calculate inverse matrix 
     */
-    matrix& inverse(matrix); 
+    array& inverse(array); 
 
     /*
      * Matrix multiplication
-    */
-    matrix& dot(matrix, matrix);
-
-
-    /*
      * Vector dot product
     */
-    vector& dot(vector, vector);
+    array& dot(array, array);
+
 } 
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef ARRAY_H
+#define ARRAY_H
 
 #include <iostream>
 #include <vector>
@@ -7,7 +7,7 @@
 
 namespace tlib
 {
-    class matrix
+    class array
     {
         private:
             int rows;
@@ -16,25 +16,25 @@ namespace tlib
 
         public:
             /* Default constructor */
-            matrix();
+            array();
 
             /* Constructor arguments: (rows, columns) */
-            matrix(int, int);
+            array(int, int);
 
             /* Constructor of copying */
-            matrix(const matrix &);
+            array(const array &);
 
-            matrix(std::vector<std::vector<double>>);
+            array(std::vector<std::vector<double>>);
 
             /* 
              * Constructor arguments: ({...})
              * For example:
-             * tlib::matrix m({{1, 0, 0}, {0, 1, 0}, {0, 0, 1}});
+             * tlib::array m({{1, 0, 0}, {0, 1, 0}, {0, 0, 1}});
              */
-            matrix(std::initializer_list<std::initializer_list<double>>);
+            array(std::initializer_list<std::initializer_list<double>>);
 
             /* Destructor */
-            ~matrix();
+            ~array();
 
             /* 
              * Calculation of matrix trace 
@@ -42,11 +42,11 @@ namespace tlib
              */
             double trace();
 
-            /*  Check if matrix is square */
+            /*  Check if array is square */
             bool is_square();
 
-            /* Return transopose matrix */
-            matrix& transpose();
+            /* Return transopose array */
+            array& transpose();
             
             /* Return number of rows */
             int get_rows();
@@ -55,9 +55,9 @@ namespace tlib
             int get_cols();
 
         // Operators overloading
-        friend std::ostream &operator<<(std::ostream &out, matrix &other);
+        friend std::ostream &operator<<(std::ostream &out, array &other);
         
-        matrix& operator=(const matrix &other)
+        array& operator=(const array &other)
         {
             if (this == &other)
                return *this;
@@ -77,27 +77,27 @@ namespace tlib
             return *this;
         }
 
-        matrix& operator=(std::initializer_list<std::initializer_list<double>> init)
+        array& operator=(std::initializer_list<std::initializer_list<double>> init)
         {
-            matrix* new_matrix = new matrix(init);
-            return *new_matrix;
+            array* new_array = new array(init);
+            return *new_array;
         }
 
-        matrix& operator+(matrix &other)
+        array& operator+(array &other)
         {
             if ((rows != other.rows) || (cols != other.cols))
             {
-                printf("<!> Incorrect size of matrixes! (%d, %d) & (%d, %d) \n", rows, cols, other.rows, other.cols);
+                printf("<!> Incorrect size of arrayes! (%d, %d) & (%d, %d) \n", rows, cols, other.rows, other.cols);
                 throw 1;
             }
-            matrix* new_matrix = this;
+            array* new_array = this;
 
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < cols; j++)
-                    new_matrix->data[i][j] += other.data[i][j];   
+                    new_array->data[i][j] += other.data[i][j];   
             }
-            return *new_matrix;
+            return *new_array;
         }
 
         std::vector<double>& operator[](int index)
