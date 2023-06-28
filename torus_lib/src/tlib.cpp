@@ -4,14 +4,14 @@
 
 namespace tlib
 {
-    double determinant(array mat, int size)
+    double determinant(array arr, int size)
     {
-        if (!mat.is_square())
+        if (!arr.is_square())
             throw 2;
         if (size == 1)
-            return mat[0][0];
+            return arr[0][0];
         else if (size == 2)
-            return (mat[0][0] * mat[1][1]) - (mat[0][1] * mat[1][0]);
+            return (arr[0][0] * arr[1][1]) - (arr[0][1] * arr[1][0]);
 
         int det = 0;
         array subarray(3, 3);
@@ -26,36 +26,36 @@ namespace tlib
                 {
                     if (j != k)
                     {
-                        subarray[cofactor_i][cofactor_j] = mat[i][j];
+                        subarray[cofactor_i][cofactor_j] = arr[i][j];
                         cofactor_j++;
                     }
                 }
                 cofactor_i++;
             }
-            det += (std::pow(-1, k) * mat[0][k] * determinant(subarray, size - 1));
+            det += (std::pow(-1, k) * arr[0][k] * determinant(subarray, size - 1));
         }
         return det;
     }
 
-    array &inverse(array mat);
+    array &inverse(array arr);
 
-    array &dot(array mat1, array mat2)
+    array &dot(array arr1, array arr2)
     {
-        if (mat1.get_cols() != mat2.get_rows())
+        if (arr1.get_cols() != arr2.get_rows())
         {
             printf("<!> Size of arrayes are incompatible\n");
             throw 3;
         }
 
-        std::vector<std::vector<double>> vec(mat1.get_rows(), std::vector<double>(mat2.get_cols()));
+        std::vector<std::vector<double>> vec(arr1.get_rows(), std::vector<double>(arr2.get_cols()));
 
-        for (int i = 0; i < mat1.get_rows(); i++)
+        for (int i = 0; i < arr1.get_rows(); i++)
         {
-            for (int j = 0; j < mat2.get_cols(); j++)
+            for (int j = 0; j < arr2.get_cols(); j++)
             {
                 vec[i][j] = 0;
-                for (int k = 0; k < mat1.get_cols(); k++)
-                    vec[i][j] += mat1[i][k] * mat2[k][j];
+                for (int k = 0; k < arr1.get_cols(); k++)
+                    vec[i][j] += arr1[i][k] * arr2[k][j];
             }
         }
         array *new_array = new array(vec);
